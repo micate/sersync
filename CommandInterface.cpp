@@ -12,13 +12,10 @@ CommandInterface::CommandInterface() : m_prefix("/bin/sh"), m_ignoreError(false)
 void CommandInterface::XmlParse(std::string config_file_name)
 {
     XMLNode xMainNode = XMLNode::openFileHelper(config_file_name.c_str(), "head");
+    string tmp = xMainNode.getChildNode("debug").getAttribute("start");
+    if (tmp == "true")	m_debug = 1;
     XMLNode Node = xMainNode.getChildNode("sersync");
-    m_watch = Node.getChildNode("localpath").getAttribute("watch");
-    string tmp = Node.getChildNode("localpath").getAttribute("debug");
-    if (tmp == "true")
-    {
-        m_debug = 1;
-    }
+    m_watch = Node.getChildNode("localpath").getAttribute("watch");   
     int num = xMainNode.nChildNode("plugin");
     if (num == 0)
     {
@@ -67,7 +64,7 @@ void CommandInterface::XmlParse(std::string config_file_name)
 
 int CommandInterface::Execute(Event e)
 {
-    if (e->operation == 0 || e->mask==256) return 0;
+    //if (e->operation == 0 || e->mask==256) return 0;
     boost::cmatch what;
     if (m_filter == true)
     {

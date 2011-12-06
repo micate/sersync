@@ -44,6 +44,10 @@ int QueueFilter::filter( Event event )
         string dirPath = event->path + "/"; //in case this path name is the prefix of other file name
         while( i < que.end() )
         {
+            if(((*i)->path).empty()){
+                ++i;
+                continue;
+            }
             string temp = ((*i)->path).substr(0, dirPath.length());
             if( ((*i)->path).substr(0, dirPath.length()) == dirPath )
             {

@@ -1,7 +1,7 @@
 #include <string.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
-#include<curl/curl.h>
+//#include<curl/curl.h>
 #include<fcntl.h>
 #include<arpa/inet.h>
 #include "QueueFilter.h"
